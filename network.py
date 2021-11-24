@@ -21,6 +21,7 @@ class Network:
         while tmp.next_node != self.now_pt:
             print(tmp.id, end=" -> ")
             tmp = tmp.next_node
+        print(tmp.id, end=" -> ")
         print(self.now_pt.id)
 
 
