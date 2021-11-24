@@ -10,10 +10,11 @@ from node import *
 
 SINGLE_FAIL_RATE = 0.2  # 节点宕机概率
 NEIGHBOUR_FAIL_RATE = 0.5   # 宕机节点周围的节点宕机概率
+NETWORK_NODE_NUM = 100
 
 if __name__ == '__main__':
     nodes = []
-    for i in range(100):
+    for i in range(NETWORK_NODE_NUM):
         nodes.append(Node(i))
 
     network = SimplexNetwork()
