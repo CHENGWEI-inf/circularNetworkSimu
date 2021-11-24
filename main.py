@@ -8,19 +8,27 @@
 from network import *
 from node import *
 
-SINGLE_FAIL_RATE = 0.08
-NEIGHBOUR_FAIL_RATE = 0.08 * 0.2
+SINGLE_FAIL_RATE = 0.2
+NEIGHBOUR_FAIL_RATE = 0.5
 
 if __name__ == '__main__':
     Node0 = Node(0)
     Node1 = Node(1)
     Node2 = Node(2)
     Node3 = Node(3)
-    network = SimplexNetwork()
-    network.nodes = [Node0, Node1, Node2, Node3]
-    network.build_network()
+    Node4 = Node(4)
+    Node5 = Node(5)
+    Node6 = Node(6)
+    Node7 = Node(7)
+    Node8 = Node(8)
+    Node9 = Node(9)
 
-    network.now_pt = Node1
-    network.print_network()
+    network = SimplexNetwork()
+    network.nodes = [Node0, Node1, Node2, Node3, Node4, Node5, Node6, Node7, Node8, Node9]
+    network.build_network()
+    network.now_pt = Node0
+
+    network.initialize_failure(SINGLE_FAIL_RATE, NEIGHBOUR_FAIL_RATE)
+    network.print_network(print_disable=True)  # 打印挂掉的节点X
     network.remove_node(Node1)  # 1 上报 2 错误； 移除 2。
     network.print_network()

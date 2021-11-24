@@ -12,13 +12,30 @@ class Network:
     def remove_node(self, *args, ** kwargs):
         pass
 
-    def print_network(self):
+    def initialize_failure(self, fail_rate, neighbour_fail_rate):
+        from random import random
+
+        network_size = len(self.nodes)
+        for i in range(1, network_size):
+            self.nodes[i].is_disabled = random() < fail_rate
+
+        # self.print_network(print_disable=True)
+
+        for i in range(1, network_size):
+            if self.nodes[i-1].is_disabled and self.nodes[(i+1) % network_size]:
+                self.nodes[i].is_disabled = self.nodes[i].is_disabled or random() < neighbour_fail_rate
+
+        # self.print_network(print_disable=True)
+
+    def print_network(self, print_disable=False):
         if self.now_pt is None:
             print("select current pointer...")
             return
 
         tmp = self.now_pt
         while tmp.next_node != self.now_pt:
+            if print_disable:
+                print('X' if tmp.is_disabled else '', end= "")
             print(tmp.id, end=" -> ")
             tmp = tmp.next_node
         print(tmp.id, end=" -> ")
@@ -42,4 +59,5 @@ class DuplexNetwork(Network):
 
     def remove_node(self,):
         pass
+
 
