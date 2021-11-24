@@ -3,7 +3,7 @@ from node import Node
 
 class Network:
     def __init__(self):
-        self.nodes = {}
+        self.nodes = {}  # 存 id 索引节点
         self.now_pt = None  # 当前节点指针
 
     def build_network(self):
@@ -35,7 +35,6 @@ class SimplexNetwork(Network):
         node_to_remove = father_node.next_node
         father_node.next_node = node_to_remove.next_node
         self.nodes.pop(node_to_remove.id)
-
 
 
 class DuplexNetwork(Network):
