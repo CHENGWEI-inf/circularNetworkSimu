@@ -19,7 +19,7 @@ class Network:
         for i in range(1, network_size):
             self.nodes[i].is_disabled = random() < fail_rate
 
-        self.print_network(print_disable=True)
+        # self.print_network(print_disable=True)
 
         for i in range(1, network_size):
             if self.nodes[i-1].is_disabled and self.nodes[(i+1) % network_size]:
@@ -29,7 +29,7 @@ class Network:
         if not self.nodes[0].is_disabled and (self.nodes[-1].is_disabled or self.nodes[1].is_disabled):
             self.nodes[0].is_disabled = random() < neighbour_fail_rate
 
-        self.print_network(print_disable=True)
+        # self.print_network(print_disable=True)
 
     def print_network(self, print_disable=False):
         if self.now_pt is None:
