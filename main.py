@@ -5,8 +5,22 @@
 1.求平均每个时间周期内宕机状况的汇报次数。
 2.当每个节点之间为双向监督时，平均每个时间周期内宕机状况的汇报次数。
 """
+from network import *
+from node import *
 
+SINGLE_FAIL_RATE = 0.08
+NEIGHBOUR_FAIL_RATE = 0.08 * 0.2
 
 if __name__ == '__main__':
-    single_fail_rate = 0.08
-    neighbour_fail_rate = 0.08 * 0.2
+    Node0 = Node(0)
+    Node1 = Node(1)
+    Node2 = Node(2)
+    Node3 = Node(3)
+    network = SimplexNetwork()
+    network.nodes = [Node0, Node1, Node2, Node3]
+    network.build_network()
+
+    network.now_pt = Node1
+    network.print_network()
+    network.remove_node(Node1)  # 1 上报 2 错误； 移除 2。
+    network.print_network()
