@@ -25,6 +25,10 @@ class Network:
             if self.nodes[i-1].is_disabled and self.nodes[(i+1) % network_size]:
                 self.nodes[i].is_disabled = self.nodes[i].is_disabled or random() < neighbour_fail_rate
 
+        # 特殊处理首节点
+        if not self.nodes[0].is_disabled and (self.nodes[-1].is_disabled or self.nodes[1].is_disabled):
+            self.nodes[0].is_disabled = random() < neighbour_fail_rate
+
         # self.print_network(print_disable=True)
 
     def print_network(self, print_disable=False):

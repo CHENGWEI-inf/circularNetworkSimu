@@ -8,8 +8,8 @@
 from network import *
 from node import *
 
-SINGLE_FAIL_RATE = 0.2
-NEIGHBOUR_FAIL_RATE = 0.5
+SINGLE_FAIL_RATE = 0.2  # 节点宕机概率
+NEIGHBOUR_FAIL_RATE = 0.5   # 宕机节点周围的节点宕机概率
 
 if __name__ == '__main__':
     Node0 = Node(0)
